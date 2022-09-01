@@ -31,6 +31,7 @@ namespace Alura.Estacionamento.Alura.Estacionamento.Modelos
         public void RegistrarEntradaVeiculo(Veiculo veiculo)
         {
             veiculo.HoraEntrada = DateTime.Now;
+            veiculo.Ticket = GerarTicket(veiculo);
             Veiculos.Add(veiculo);
         }
 
@@ -80,11 +81,11 @@ namespace Alura.Estacionamento.Alura.Estacionamento.Modelos
             return informacao;
         }
 
-        public Veiculo PesquisaVeiculo(string placa)
+        public Veiculo PesquisaVeiculo(string idTicket)
         {
 
             var encontrado = (from veiculo in Veiculos
-                              where veiculo.Placa == placa
+                              where veiculo.IdTicket == idTicket
                               select veiculo).SingleOrDefault();
             return encontrado;
 
@@ -102,9 +103,19 @@ namespace Alura.Estacionamento.Alura.Estacionamento.Modelos
 
         }
 
+        private string GerarTicket(Veiculo veiculo)
+        {
+            string identificador = new Guid().ToString().Substring(0, 5);
+            veiculo.IdTicket = identificador;
+
+            string ticket = "###Ticket Estacionamento da Kau###" +
+                            $"Identifcador: {identificador}" +
+                            $"Data/Hora de entrada: {DateTime.Now}" +
+                            $"Placa do Veículo:{veiculo.Placa}";
 
 
-
+            return ticket;
+        }
 
     }
 }

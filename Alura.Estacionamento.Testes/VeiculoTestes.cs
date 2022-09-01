@@ -1,5 +1,6 @@
 using Alura.Estacionamento.Alura.Estacionamento.Modelos;
 using Alura.Estacionamento.Modelos;
+using System;
 using Xunit;
 
 namespace Alura.Estacionamento.Testes
@@ -60,6 +61,28 @@ namespace Alura.Estacionamento.Testes
 
             Assert.Contains("Ficha do Veículo:", dados);
 
+        }
+
+        [Fact]
+        public void NomeProprietarioComQuantidadeCaracteres()
+        {
+            string nomeProprietario = "Ab";
+
+            Assert.Throws<FormatException>(
+                () => new Veiculo(nomeProprietario)
+            );
+        }
+
+        [Fact]
+        public void TestaQuantidadeCaracteresPlacaVeiculo()
+        {
+            string placa = "Cd";
+
+            var mensagem = Assert.Throws<FormatException>(
+
+                () => new Veiculo().Placa = placa
+            );
+            Assert.Equal("A placa deve possuir 8 caracteres", mensagem.Message);
         }
 
     }

@@ -63,9 +63,9 @@ namespace Alura.Estacionamento.Testes
             veiculo.Modelo = modelo;
             estacionamento.RegistrarEntradaVeiculo(veiculo);
 
-            var consultado = estacionamento.PesquisaVeiculo(placa);
+            var consultado = estacionamento.PesquisaVeiculo(veiculo.IdTicket);
 
-            Assert.Equal(placa, consultado.Placa);
+            Assert.Contains("Ticket Estacionamento da Kau", consultado.Ticket);
 
         }
 

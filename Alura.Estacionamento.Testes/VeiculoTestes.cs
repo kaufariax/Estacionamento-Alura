@@ -6,13 +6,22 @@ namespace Alura.Estacionamento.Testes
 {
     public class VeiculoTestes
     {
+        private Veiculo veiculo;
+
+        public VeiculoTestes()
+        {
+            veiculo = new Veiculo();
+        }
+
         [Fact]
         public void AcelerarVeiculoTeste()
         {
             //Arrange
-            var veiculo = new Veiculo();
+            //var veiculo = new Veiculo();
+
             //Action
             veiculo.Acelerar(15);
+
             //Assert
             Assert.Equal(150, veiculo.VelocidadeAtual);
         }
@@ -20,7 +29,6 @@ namespace Alura.Estacionamento.Testes
         [Fact]
         public void FrearVeiculoTeste()
         {
-            var veiculo = new Veiculo();
             veiculo.Frear(20);
             Assert.Equal(-300, veiculo.VelocidadeAtual);
         }
@@ -28,11 +36,8 @@ namespace Alura.Estacionamento.Testes
         [Fact]
         public void TipoVeiculoTeste()
         {
-            //Arrange
-            var veiculo = new Veiculo();
-            //Act
             veiculo.Tipo = TipoVeiculo.Automovel;
-            //Assert
+
             Assert.Equal(TipoVeiculo.Automovel, veiculo.Tipo);
         }
 
@@ -45,18 +50,14 @@ namespace Alura.Estacionamento.Testes
         [Fact]
         public void DadosVeiculoTeste()
         {
-            //Arrange
-            var carro = new Veiculo();
-            carro.Proprietario = "Kau Farias";
-            carro.Tipo = TipoVeiculo.Automovel;
-            carro.Placa = "AAA-0001";
-            carro.Cor = "Vermelho";
-            carro.Modelo = "Gol";
+            veiculo.Proprietario = "Kau Farias";
+            veiculo.Tipo = TipoVeiculo.Automovel;
+            veiculo.Placa = "AAA-0001";
+            veiculo.Cor = "Vermelho";
+            veiculo.Modelo = "Gol";
 
-            //Act
-            string dados = carro.ToString();
+            string dados = veiculo.ToString();
 
-            //Assert
             Assert.Contains("Ficha do Veículo:", dados);
 
         }

@@ -8,15 +8,19 @@ namespace Alura.Estacionamento.Testes
     {
         private Veiculo veiculo;
         private Patio estacionamento;
+        private Operador operador;
 
         public PatioTestes()
         {
             veiculo = new Veiculo();
             estacionamento = new Patio();
+            operador = new Operador();
+            operador.Nome = "Mathias Fagundes";
         }
         [Fact]
         public void FaturamentoTeste()
         {
+            estacionamento.OperadorPatio = operador;
             veiculo.Proprietario = "Kau Farias";
             veiculo.Placa = "ABC-0101";
             veiculo.Modelo = "Toyota";
@@ -38,6 +42,7 @@ namespace Alura.Estacionamento.Testes
         [InlineData("Richard Santos", "DDD-0004", "Vermelho", "Corsa")]
         public void FaturamentoComVariosVeiculosTeste(string proprietario, string placa, string cor, string modelo)
         {
+            estacionamento.OperadorPatio = operador;
             veiculo.Proprietario = proprietario;
             veiculo.Placa = placa;
             veiculo.Cor = cor;
@@ -57,6 +62,7 @@ namespace Alura.Estacionamento.Testes
                                            string cor,
                                            string modelo)
         {
+            estacionamento.OperadorPatio = operador;
             veiculo.Proprietario = proprietario;
             veiculo.Placa = placa;
             veiculo.Cor = cor;
@@ -72,6 +78,7 @@ namespace Alura.Estacionamento.Testes
         [Fact]
         public void AlteracaoDadosVeiculoTeste()
         {
+            estacionamento.OperadorPatio = operador;
             veiculo.Proprietario = "Kau Farias";
             veiculo.Placa = "AAA-0001";
             veiculo.Cor = "Preto";

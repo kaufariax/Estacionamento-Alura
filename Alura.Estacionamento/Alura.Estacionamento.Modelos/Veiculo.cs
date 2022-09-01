@@ -85,14 +85,34 @@ namespace Alura.Estacionamento.Modelos
         //Métodos
         public void Acelerar(int tempoSeg)
         {
-            this.VelocidadeAtual += (tempoSeg * 10);
+            VelocidadeAtual += (tempoSeg * 10);
         }
 
         public void Frear(int tempoSeg)
         {
-            this.VelocidadeAtual -= (tempoSeg * 15);
+            VelocidadeAtual -= (tempoSeg * 15);
         }
-               
+
+        public void AlterarDados(Veiculo veiculoAlterado)
+        {
+            Proprietario = veiculoAlterado.Proprietario;
+            Modelo = veiculoAlterado.Modelo;
+            Largura = veiculoAlterado.Largura;
+            Cor = veiculoAlterado.Cor;
+
+        }
+
+        public override string ToString()
+        {
+            return $"Ficha do Veículo:\n " +
+                    $"Tipo do Veículo: {this.Tipo.ToString()}\n " +
+                    $"Proprietário: {this.Proprietario}\n" +
+                    $"Modelo: {this.Modelo}\n" +
+                    $"Cor: {this.Cor}\n" +
+                    $"Placa: {this.Placa}\n";
+
+        }
+
         //Construtor
         public Veiculo()
         {
